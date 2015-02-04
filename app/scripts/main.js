@@ -35,46 +35,48 @@ function expect(target) {
 // \___/\____/_/ /_/____/\__/_/   \__,_/\___/\__/\____/_/  /____/
 //
 // Only add code to *THIS* section!
-( function(){
-  "use strict";
-  
-  function it(description, contents){
-    console.log('\n\n"It '+ description + '"');
-    contents();
-  }
 
 
-  function expect(target) {
-    return {
-      toBe: function(expectation) {
-        if (target === expectation) {
-          console.log('\n     %cPASSED', 'color:green;', 'Expected', target, 'to be', expectation );
-          return true;
-        } else {
-          console.log('\n     %cFAILED', 'color:red;', 'Expected', target, 'to be', expectation );
-          return false;
-        }
-      }
-    }
-  }
+  var Dog = function(options) {
 
-  var Dog = function(color, hungry) {
+    var options = options || {};
 
-    this.color = color;
+    this.status = 'normal' || options.status;
 
-    this.hungry = false;
-  }
-  var Human = function(cool) {
+    this.color = options.color;
 
-    this.cool = true;
+    this.name = options.name;
+
+    this.hungry = (options.hungry === false) ? false:true;
+
+
+
   }
 
 
 
+  var Human = function(options) {
+
+    var options = options || {};
+
+    this.cool = options.cool || false;
+
+    this.name = options.name;
+
+    this.pet = (function (x){
+       x.status = 'happy';
+     });
+    this.feed = (function (x){
+      x.hungry = false;
+    });
 
 
 
-}())
+  }
+
+
+
+
 
 
 //        __
